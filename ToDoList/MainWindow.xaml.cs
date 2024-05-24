@@ -51,7 +51,7 @@ namespace ToDoList
         {
             if (!string.IsNullOrWhiteSpace(TaskTextBox.Text))
             {
-                Tasks.Add(new TaskItem { Name = TaskTextBox.Text });
+                Tasks.Add(new TaskItem { Name = TaskTextBox.Text, IsCompleted = false });
                 TaskTextBox.Clear();
                 SaveTask();
             }
@@ -59,12 +59,20 @@ namespace ToDoList
 
         private void DeleteTask_Click(object sender, RoutedEventArgs e)
         {
+            var button = sender as Button;
+            var task = button?.Tag as TaskItem;
+            if (task != null)
+            {
+                Tasks.Remove(task);
+                SaveTask();
+            }
 
         }
 
         private void SaveTask()
         {
-            throw new NotImplementedException();
+            var json = JsonSerializer.Serialize(Tasks);
+            File.WriteAllText(filepath, json);
         }
     }
 }
