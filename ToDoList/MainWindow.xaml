@@ -15,7 +15,7 @@
             <TextBox Name="TaskTextBox" Width="300" Margin="5"/>
             <Button Content="Add Task" Click="AddTask_Click" Margin="5"/>
         </StackPanel>
-        <ListBox Name="TasksListBox" Grid.Row="1" Margin="10">
+        <ListBox Name="TasksListBox" Grid.Row="1" Margin="10,45,10,10">
             <ListBox.ItemTemplate>
                 <DataTemplate>
                     <StackPanel Orientation="Horizontal">
@@ -25,6 +25,7 @@
                 </DataTemplate>
             </ListBox.ItemTemplate>
         </ListBox>
+        <ComboBox x:Name="GroupFilterComboBox" Margin="5,0,5,344" Grid.Row="1" DisplayMemberPath="Name"/>
 
     </Grid>
 </Window>

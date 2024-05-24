@@ -26,6 +26,8 @@ namespace ToDoList
         private readonly string filepath = "tasks.json";
         public ObservableCollection<TaskItem> Tasks { get; set; }
 
+        private TaskGroup selectedGroup;
+
         public MainWindow()
         {
             InitializeComponent();
@@ -51,7 +53,7 @@ namespace ToDoList
         {
             if (!string.IsNullOrWhiteSpace(TaskTextBox.Text))
             {
-                Tasks.Add(new TaskItem { Name = TaskTextBox.Text, IsCompleted = false });
+                Tasks.Add(new TaskItem { Name = TaskTextBox.Text, IsCompleted = false, Group = selectedGroup });
                 TaskTextBox.Clear();
                 SaveTask();
             }
@@ -74,5 +76,7 @@ namespace ToDoList
             var json = JsonSerializer.Serialize(Tasks);
             File.WriteAllText(filepath, json);
         }
+
+
     }
 }
